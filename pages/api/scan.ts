@@ -44,10 +44,23 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
 function createPrompt(emailAddress: string, subject: string, body: string): string {
   return `
-    I am going to send you the email address, subject line, and email body for an email I received. Can you please check if this could be a phishing or scam email?
+  I have received an email and I need your assistance in evaluating if it is a phishing or scam email. Please carefully review the following details:
 
-    Email address: ${emailAddress}
-    Subject: ${subject}
-    Body: ${body}
+  Email address: ${emailAddress}
+  Subject: ${subject}
+  Body: ${body}
+
+  Criteria for identifying phishing or scam emails:
+  1. Check for any suspicious or unusual content in the email.
+  2. Look for any requests for personal information, such as passwords or credit card details.
+  3. Analyze the email for any suspicious attachments or links.
+  4. Pay attention to the sender's email address and verify its authenticity.
+  5. Assess the overall tone and language used in the email for any signs of urgency, coercion, or inconsistencies.
+  6. Look for any grammatical or spelling errors in the email.
+
+  Please provide an analysis of the email, highlighting any red flags or indications of phishing or scam activity. Your expertise is greatly appreciated. In your response make sure
+  the first thing you say is the percentage chance that this is an phishing or scam email. Just have it be a number between 0 and 100 and then a period. After that continue to the explanation.
+
+  Thank you!
   `;
 }
