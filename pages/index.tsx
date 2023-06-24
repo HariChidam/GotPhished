@@ -50,7 +50,7 @@ export default function Home() {
       <link rel="icon" href="/favicon.png" />
     </Head>
     <div className='pb-4'>
-      <h1 className="text-8xl font-bold bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 bg-clip-text text-transparent py-4 text-center"> GotPhished? </h1>
+      <h1 className="text-6xl font-bold bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 bg-clip-text text-transparent py-4 text-center"> GotPhished? </h1>
     </div>
     <div className="bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 text-white rounded-lg p-4 mb-4">
       <h2 className="text-xl font-bold text-center">This is a proof of concept for a Gmail add-on I am making that will be a GPT-3.5 powered phishing alert!</h2>
