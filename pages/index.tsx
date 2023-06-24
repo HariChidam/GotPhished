@@ -6,9 +6,12 @@ export default function Home() {
   const [subject, setSubject] = useState('');
   const [body, setBody] = useState('');
   const [result, setResult] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+
     try {
       const response = await fetch('/api/scan', {
         method: 'POST',
@@ -21,6 +24,8 @@ export default function Home() {
       setResult(data.result);
     } catch (error) {
       console.error('Error:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -42,7 +47,7 @@ export default function Home() {
       <title>GotPhished?</title>
       <meta name="description" content="GPT powered phishing alert" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.png" />
     </Head>
     <div className='pb-4'>
       <h1 className="text-8xl font-bold bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 bg-clip-text text-transparent py-4 text-center"> GotPhished? </h1>
@@ -97,12 +102,21 @@ export default function Home() {
             </button>
           </form>
 
-          {result && (
+          
             <div className="mt-4 bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 text-white rounded p-4">
-            <h2 className="text-xl font-medium">Result:</h2>
-              <p>{result}</p>
+              {isLoading ? 
+                (
+                  <h2 className="text-xl font-medium">Scanning for Phishys :)</h2>
+                ) 
+                : 
+                (
+                  <div>
+                    <h2 className="text-xl font-medium">Result:</h2>
+                    <p>{result}</p>
+                  </div>
+                )
+              }
             </div>
-          )}
 
         </div>
     </div>
