@@ -1,11 +1,17 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import Head from 'next/head';
+import dynamic from "next/dynamic";
+const AnimatedNumbers = dynamic(() => import("react-animated-numbers"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [emailAddress, setEmailAddress] = useState('');
   const [subject, setSubject] = useState('');
   const [body, setBody] = useState('');
   const [result, setResult] = useState('');
+  const [percentage, setPercentage] = useState('');
+  const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
@@ -28,6 +34,16 @@ export default function Home() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const num = result.match(/\d+/);
+    const p = num ? num[0] : '';
+    const restOfString = num ? result.slice(num[0].length + 1) : result;
+    
+    setPercentage(p);
+    setDescription(restOfString);
+  }, [result]);
+    
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmailAddress(e.target.value);
@@ -104,7 +120,7 @@ export default function Home() {
 
           
             <div className="mt-4 bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 text-white rounded p-4">
-              {isLoading ? 
+              {isLoading? 
                 (
                   <h2 className="text-xl font-medium">Scanning for Phishys :)</h2>
                 ) 
@@ -112,7 +128,17 @@ export default function Home() {
                 (
                   <div>
                     <h2 className="text-xl font-medium">Result:</h2>
-                    <p>{result}</p>
+                    <div className='flex flex-col items-center text-center'>
+                      <div className='flex items-center'>
+                        <AnimatedNumbers
+                        animateToNumber={parseInt(percentage)}
+                        fontStyle={{ fontSize: 50 }}
+                        ></AnimatedNumbers>
+                        <p className='text-xl font-bold pr-2'>%</p>
+                        <p className='font-bold text-2xl pt-2'>Phishy</p>
+                      </div>
+                      <p>{description}</p>
+                    </div>
                   </div>
                 )
               }

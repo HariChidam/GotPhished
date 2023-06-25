@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"index.tsx -> react-animated-numbers\":{\"id\":\"index.tsx -> react-animated-numbers\",\"files\":[\"static/chunks/node_modules_react-animated-numbers_dist_index_js.js\"]}}"

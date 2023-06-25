@@ -59,7 +59,8 @@ function createPrompt(emailAddress: string, subject: string, body: string): stri
   6. Look for any grammatical or spelling errors in the email.
 
   Please provide an analysis of the email, highlighting any red flags or indications of phishing or scam activity. Your expertise is greatly appreciated. In your response make sure
-  the first thing you say is the percentage chance that this is an phishing or scam email. Just have it be a number between 0 and 100 and then a period. After that continue to the explanation.
+  the first thing you say is the percentage chance that this is an phishing or scam email. Just have it be a number between 0 and 100 with no actual percent symbol.
+  After that continue to the explanation. For example "90 This email is a phishing email beacause..."
 
   Thank you!
   `;
