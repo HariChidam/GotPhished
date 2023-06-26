@@ -60,7 +60,7 @@ function createPrompt(emailAddress: string, subject: string, body: string): stri
 
   Please provide an analysis of the email, highlighting any red flags or indications of phishing or scam activity. Your expertise is greatly appreciated. In your response make sure
   the first thing you say is the percentage chance that this is an phishing or scam email. Just have it be a number between 0 and 100 with no actual percent symbol.
-  After that continue to the explanation. So your answer should look like '#' then explanation.
+  After that continue to the explanation starting with either "This is a phishing email" or "This is not a phishing email". So your answer should look like "# This is ..."
 
   Thank you!
   `;
