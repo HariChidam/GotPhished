@@ -28,6 +28,7 @@ export default function Home() {
       });
       const data = await response.json();
       setResult(data.result);
+      console.log(data.result)
     } catch (error) {
       console.error('Error:', error);
     } finally {
@@ -38,8 +39,9 @@ export default function Home() {
   useEffect(() => {
     const num = result.match(/\d+/);
     const p = num ? num[0] : '';
-    const restOfString = num ? result.slice(num[0].length + 1) : result;
-    
+    const i = result.indexOf('T')
+    const restOfString = result.slice(i , result.length);
+  
     setPercentage(p);
     setDescription(restOfString);
   }, [result]);
@@ -129,7 +131,7 @@ export default function Home() {
                   <div>
                     <h2 className="text-xl font-medium">Result:</h2>
                     <div className='flex flex-col items-center text-center'>
-                      <div className='flex items-center'>
+                     {result && <div className='flex items-center'>
                         <AnimatedNumbers
                         animateToNumber={parseInt(percentage)}
                         fontStyle={{ fontSize: 50 }}
@@ -137,6 +139,7 @@ export default function Home() {
                         <p className='text-xl font-bold pr-2'>%</p>
                         <p className='font-bold text-2xl pt-2'>Phishy</p>
                       </div>
+                      }
                       <p>{description}</p>
                     </div>
                   </div>

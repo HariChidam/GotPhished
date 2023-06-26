@@ -31,7 +31,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     const completion = await openai.createCompletion({
       model: 'text-davinci-003',
       prompt: createPrompt(emailAddress, subject, body),
-      temperature: 0.6,
+      temperature: 0.1,
       max_tokens: 100,
     });
 
@@ -44,7 +44,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
 function createPrompt(emailAddress: string, subject: string, body: string): string {
   return `
-  I have received an email and I need your assistance in evaluating if it is a phishing or scam email. Please carefully review the following details:
+  This is an email. Please carefully review the following details:
 
   Email address: ${emailAddress}
   Subject: ${subject}
@@ -60,7 +60,7 @@ function createPrompt(emailAddress: string, subject: string, body: string): stri
 
   Please provide an analysis of the email, highlighting any red flags or indications of phishing or scam activity. Your expertise is greatly appreciated. In your response make sure
   the first thing you say is the percentage chance that this is an phishing or scam email. Just have it be a number between 0 and 100 with no actual percent symbol.
-  After that continue to the explanation. For example "90 This email is a phishing email beacause..."
+  After that continue to the explanation. So your answer should look like '#' then explanation.
 
   Thank you!
   `;
